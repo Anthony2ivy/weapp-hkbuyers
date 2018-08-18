@@ -1,0 +1,6 @@
+{    "navigationBarTitleText": "增加商品",
+    "usingComponents": {
+        "wux-upload": "../../wux-dist/upload/index",
+        "i-input": "../../iview-dist/input/index",
+        "i-panel": "../../iview-dist/panel/index"
+    }}

@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    fileList:[]
+    images:[]
   },
 
   onChange(e) {
@@ -26,12 +26,14 @@ Page({
   },
   onSuccess(e) {
     console.log('onSuccess', e)
+    this.data.images.push(JSON.parse(e.detail.file.res.data).path);
+    console.log(this.data.images);
   },
   onFail(e) {
     console.log('onFail', e)
   },
   onComplete(e) {
-    console.log('onComplete', e)
+    console.log('onComplete', e);
     wx.hideLoading()
   },
   onProgress(e) {

@@ -2,10 +2,9 @@
 <view>
     <i-panel title="商品图片">
         <wux-cell>
-            <wux-upload list-type="picture-card" show-upload-list="{{ false }}" url="https://www.skyvow.cn/api/common/file" bind:change="onChange"
-                bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview">
-                <image src="{{ imageUrl }}" wx:if="{{ imageUrl }}" />
-                <text wx:else>Upload</text>
+            <wux-upload list-type="picture-card" file-list="{{ fileList }}" url="https://www.shitaidaigou.club/img" bind:change="onChange"
+                bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview" name="img">
+                <text>Upload</text>
             </wux-upload>
         </wux-cell>
     </i-panel>

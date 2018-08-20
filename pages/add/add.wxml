@@ -3,7 +3,7 @@
     <i-panel title="商品图片">
         <wux-cell>
             <wux-upload list-type="picture-card" file-list="{{ fileList }}" url="https://www.shitaidaigou.club/img" bind:change="onChange"
-                bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview" name="img">
+                bind:success="onSuccess" bind:fail="onFail" bind:complete="onComplete" bind:preview="onPreview" bind:remove="onRemove" name="img">
                 <text>Upload</text>
             </wux-upload>
         </wux-cell>

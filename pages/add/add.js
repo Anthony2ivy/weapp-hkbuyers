@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    images:[]
+    fileList:[]
   },
 
   onChange(e) {
@@ -14,33 +14,43 @@ Page({
       file
     } = e.detail
     if (file.status === 'uploading') {
-      this.setData({
-        progress: 0,
-      })
-      wx.showLoading()
+      let newFile = {uid:file.uid,progress:0,url:file.url};
+      this.data.fileList.push(newFile);
     } else if (file.status === 'done') {
       this.setData({
-        imageUrl: file.url,
+        fileList:this.data.fileList.map(item => {
+          if (item.uid === file.uid){
+            item.progress=1;
+          }
+          return item;
+        })
       })
     }
   },
+  onBefore(e){
+    console.log(e);
+  },
   onSuccess(e) {
-    console.log('onSuccess', e)
-    this.data.images.push(JSON.parse(e.detail.file.res.data).path);
-    console.log(this.data.images);
+    console.log('onSuccess', e);
+    const {
+      file
+    } = e.detail
+    this.setData({fileList:this.data.fileList.map(item => {
+      if(item.uid === file.uid)
+      item.remoteUrl=JSON.parse(file.res.data).path;
+      return item;
+    })});
+    console.log(this.data.fileList);
   },
   onFail(e) {
     console.log('onFail', e)
+
   },
   onComplete(e) {
     console.log('onComplete', e);
-    wx.hideLoading()
   },
   onProgress(e) {
     console.log('onProgress', e)
-    this.setData({
-      progress: e.detail.file.progress,
-    })
   },
   onPreview(e) {
     console.log('onPreview', e)
@@ -58,16 +68,8 @@ Page({
       file,
       fileList
     } = e.detail
-    wx.showModal({
-      content: '确定删除？',
-      success: (res) => {
-        if (res.confirm) {
-          this.setData({
-            fileList: fileList.filter((n) => n.uid !== file.uid),
-          })
-        }
-      },
-    })
+    this.setData({fileList : this.data.fileList.filter(item => item.uid != file.uid)});
+    console.log(this.data.fileList);
   },
   /**
    * 生命周期函数--监听页面加载

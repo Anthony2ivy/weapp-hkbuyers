@@ -5,9 +5,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    fileList:[]
+    fileList:[],
+    barcode:''
   },
-
+  scanBarcode(e){
+    wx.scanCode({scanType:'barCode',success: (res)=>{
+      console.log(res.result);
+      this.setData({
+        barcode:res.result
+      })
+    }});
+  },
   onChange(e) {
     console.log('onChange', e)
     const {

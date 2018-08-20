@@ -1,1 +1,29 @@
 /* pages/add/add.wxss */
+.with-icon{
+    position: relative;
+}
+.right-icon{
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    z-index: 999;
+}
+page{
+  background-color:rgba(0,0,0,0.03);
+}
+.color-group{
+    padding: 10px;
+    width: 100%;
+    box-sizing:border-box;
+
+}
+.color-content{
+    width: 100%;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 2px;
+    box-sizing:border-box;
+    padding: 10px;
+}
+.group-name{
+    font-size: 15px;
+}
